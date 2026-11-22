@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id" data-theme="light" data-motion="full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>FruitVision | The Living Orchard Lab</title>
+    <meta name="description" content="FruitVision: analisis jenis dan kesegaran buah (Fresh / Rotten) dengan computer vision klasik. Nature Meets Intelligence." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23244C35' d='M16 8c-3-3-9-2-10 4-1 7 3 14 8 14 1 0 1.5-.5 2-.5s1 .5 2 .5c5 0 9-7 8-14-1-6-7-7-10-4z'/%3E%3Cpath fill='%236F9C59' d='M17 7c0-3 2-5 5-5 0 3-2 5-5 5z'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+    <script>
+      // Dijalankan sebelum render: tema tanpa flash + status boot (blur reveal). Semua dibungkus try/catch; jika gagal, halaman tetap tampil normal.
+      (function () {
+        var d = document.documentElement;
+        try {
+          var t = localStorage.getItem("fv-theme") || "system";
+          d.dataset.theme = t === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : t;
+          var m = localStorage.getItem("fv-motion") || "system";
+          var reduced = m === "reduced" || (m === "system" && matchMedia("(prefers-reduced-motion: reduce)").matches);
+          d.dataset.motion = reduced ? "reduced" : "full";
+          if (!reduced) { d.classList.add("booting"); setTimeout(function () { d.classList.remove("booting"); }, 2500); }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="boot-veil" aria-hidden="true"></div>
+    <div id="root"></div>
+    <noscript><p style="padding:2rem;font-family:sans-serif">FruitVision membutuhkan JavaScript.</p></noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
